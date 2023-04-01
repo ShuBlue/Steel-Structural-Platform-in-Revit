@@ -1,0 +1,361 @@
+﻿<Window  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" x:Class="Demo.Windows"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewmodel="clr-namespace:Demo.ViewModel" 
+       d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
+        mc:Ignorable="d"
+        Title="单层厂房Demo" Height="850" Width="1200" WindowStartupLocation="CenterOwner">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive! -->
+                <!--
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                -->
+                <!-- Theme setting -->
+                <!--
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml" />-->
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="18*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <TabControl TabStripPlacement="Left">
+            <TabItem Header="开间与净深" Height="30" Width="100" FontSize="15">
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1.2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="10*"/>
+                        </Grid.RowDefinitions>
+                        <Border Grid.ColumnSpan="2" Grid.Row="0" BorderThickness="1" BorderBrush="Gray" Margin="1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="8*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="净深设置：" Grid.ColumnSpan="2"  VerticalAlignment="Center"/>
+                                <TextBlock Text="总宽度B:" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBox x:Name="NetDepth" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Height="30" Width="150" HorizontalAlignment="Left"/>
+                            </Grid>
+                        </Border>
+                        <Border Grid.ColumnSpan="2" Grid.Row="3" BorderThickness="1" BorderBrush="Gray" Margin="1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="8*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="6*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="开间设置：" Grid.ColumnSpan="2"  VerticalAlignment="Center"/>
+                                <TextBlock Text="框架榀数n:" Grid.Row="1" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                                <TextBox x:Name="BentNumber"   Grid.Row="1" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Left" Width="150" Height="30" TextChanged="BentNumber_TextChanged" />
+                                <CheckBox x:Name="IsUniform" Grid.Row="2" Content="框架等间距" Grid.ColumnSpan="2" VerticalAlignment="Center"  Checked="IsUniform_Checked" Unchecked="IsUniform_Unchecked" />
+                                <TextBlock Text="框架间距d:" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                <TextBox x:Name="Space" Grid.Row="3" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Left" Width="150" Height="30" TextChanged="Space_TextChanged" />
+                                <TextBlock Text="总长度L:" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False"/>
+                                <TextBox x:Name="Length" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="150" Height="30" IsEnabled="False"/>
+                                <CheckBox x:Name="IsRandom" Grid.Row="5" Grid.ColumnSpan="2" Content="框架任意间距" VerticalAlignment="Center" Checked="IsRandom_Checked" Unchecked="IsRandom_Unchecked"/>
+
+                                <DataGrid x:Name="SpaceList" Grid.Row="6" Grid.ColumnSpan="2" Margin="10" ItemsSource="{Binding SpaceInfos}"  AutoGenerateColumns="False" CanUserAddRows="False">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="跨" Width="200" Binding="{Binding SpaceName}">
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn Header="间距" Width="*" Binding="{Binding Space}">
+                                        </DataGridTextColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                    <Image Grid.Column="1" Source="resources/开间进深图片说明.png"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="几何"  Height="30" Width="100" FontSize="15">
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1.2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2.2*"/>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="3*"/>
+                    </Grid.RowDefinitions>
+                    <Border Margin="1" BorderBrush="Gray" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="梁：" FontSize="12"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="hr：   " FontSize="12" Height="25"/>
+                                <TextBox x:Name="RfHeight" Width="150" Height="25" Margin="5" />
+                                <!--<Label Content="              α：" FontSize="15"/>
+                                <TextBox x:Name="RfAngle" Width="100" Margin="2" TextChanged="RfAngle_TextChanged"/>-->
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="截面：" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <ComboBox  Name="RfSelection" Width="300" Height="25" SelectedIndex="4" Margin="5"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="材料：" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <ComboBox Name="RfMaterial" Width="300" Height="25" SelectedIndex="5" Margin="5"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <Border  Grid.Row="1" Margin="1" BorderBrush="Gray" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock  Text="柱：" FontSize="12"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="hcol:  " FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBox x:Name="ColHeight" Width="150" Height="25" Margin="5"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="柱与地连接方式：" FontSize="12"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <ComboBox Name="Connection"  Width="200" Height="25" SelectedIndex="0" Margin="5"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="截面：" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <ComboBox  Name="ColSelection" Width="300" Height="25" SelectedIndex="7"  Margin="5"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="材料：" FontSize="12"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <ComboBox Name="ColMaterial" Width="300" Height="25" SelectedIndex="5" Margin="5"/>
+                            </StackPanel>
+                            <StackPanel>
+                                <CheckBox x:Name="IsSetWindResistantCol" Content="边跨抗风柱" FontSize="12" Margin="5" Checked="IsSetWindResistantCol_Checked" Unchecked="IsSetWindResistantCol_Unchecked"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock  x:Name="WindResistantColSelectionTip" Text="截面：" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <ComboBox  Name="WindResistantColSelection" Width="300" Height="25" SelectedIndex="7" Margin="5"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock x:Name="WindResistantColMaterialTip" Text="材料：" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <ComboBox  Name="WindResistantColMaterial" Width="300" Height="25" SelectedIndex="5" Margin="5"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock x:Name="WindResistantColNumberTip" Text="抗风柱个数：" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBox  Name="WindResistantColNumber" Width="150" Height=" 25" Margin="5,0"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    <Border  Grid.Row="2" Margin="1" BorderBrush="Gray" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock  Text="系杆：" FontSize="12" />
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="截面：" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <ComboBox  Name="BeamSelection" Width="300" Height=" 25" SelectedIndex="4" Margin="5"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="材料：" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <ComboBox Name="BeamMaterial" Width="300" Height="25" SelectedIndex="5" Margin="5"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox x:Name="IsRoofBeam" VerticalAlignment="Center" Checked="IsRoofBeam_Checked" Unchecked="IsRoofBeam_Unchecked"/>
+                                <TextBlock Text="屋脊梁" FontSize="12" Margin="5"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock x:Name="RfBeamSelectionTip" Text="截面：" Height="25" IsEnabled="True" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <ComboBox x:Name="RfBeamSelection" Width="300" IsEnabled="True" SelectedIndex="4" Margin="5"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock x:Name="RfBeamMaterialTip" Text="材料：" IsEnabled="True" FontSize="12"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <ComboBox x:Name="RfBeamMaterial" Width="300" Height="25" IsEnabled="True" SelectedIndex="5" Margin="5"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    <Image Grid.Column="1" Grid.RowSpan="4" Source="resources/柱高屋架高图片说明.png" />
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="檩条" Height="30" Width="100" FontSize="15">
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1.2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1.5*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Border BorderThickness="1" BorderBrush="Gray" Margin="1">
+                        <StackPanel>
+                            <TextBlock Text="定义：" Margin="5"/>
+                            <StackPanel Orientation="Horizontal" >
+                                <CheckBox x:Name="IsNumberDefine" VerticalAlignment="Center" Checked="IsNumberDefine_Checked" Unchecked="IsNumberDefine_Unchecked"/>
+                                <TextBlock Text="按檩条数量" Margin="5"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock x:Name="PurlinNumberLTip" Text="nl：" Margin="5"/>
+                                <TextBox x:Name="PurlinNumberL" Width="150"/>
+                                <TextBlock x:Name="PurlinNumberRTip" Text="nr：" Margin="5"/>
+                                <TextBox x:Name="PurlinNumberR" Width="150"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox x:Name="IsSpaceDefine" VerticalAlignment="Center" Checked="IsSpaceDefine_Checked" Unchecked="IsSpaceDefine_Unchecked"/>
+                                <TextBlock Text="按檩条间距" Margin="5"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock x:Name="PurlinSpaceLTip" Text="dl：" IsEnabled="False" Margin="5"/>
+                                <TextBox x:Name="PurlinSpaceL" Width="150" IsEnabled="False" />
+                                <TextBlock x:Name="PurlinSpaceRTip" Text="dr：" IsEnabled="False" Margin="5"/>
+                                <TextBox x:Name="PurlinSpaceR" Width="150" IsEnabled="False"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    <Border Margin="1" Grid.Row="1" BorderThickness="1" BorderBrush="Gray">
+                        <StackPanel>
+                            <TextBlock Text="尺寸：" Margin="5"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="dprl：" VerticalAlignment="Center"/>
+                                <TextBox x:Name="PurlinRL" Width="150" Margin="5"/>
+                                <TextBlock Text="dprr：" VerticalAlignment="Center"/>
+                                <TextBox x:Name="PurlinRR" Width="150" Margin="5"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="dpcl："  VerticalAlignment="Center"/>
+                                <TextBox x:Name="PurlinCL" Width="150" Margin="5"/>
+                                <TextBlock Text="dpcr：" VerticalAlignment="Center"/>
+                                <TextBox x:Name="PurlinCR" Width="150" Margin="5"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    <Border Margin="1" Grid.Row="2" BorderBrush="Gray" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="檩条：" Margin="5"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="截面：" VerticalAlignment="Center"/>
+                                <ComboBox x:Name="PurlinSelection" Width="300"  SelectedIndex="4" Margin="5"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock  Text="材料："  VerticalAlignment="Center"/>
+                                <ComboBox x:Name="PurlinMaterial" Width="300" SelectedIndex="5" Margin="5"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    <Image Grid.Column="1" Grid.RowSpan="3" Source="resources/檩条参数图片说明.png"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="支撑" Height="30" Width="100" FontSize="15">
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1.2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Border BorderThickness="1" BorderBrush="Gray" Margin="1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="5*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="柱间支撑:" />
+                            <StackPanel Grid.Row="1">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="截面：" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="ColBracingSelection" Width="300" SelectedIndex="4" Margin="5"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="材料：" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="ColBracingMaterial" Width="300" SelectedIndex="5" Margin="5"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <DataGrid x:Name="ColBracingList" Grid.Row="2" ItemsSource="{Binding ColBracingInfos}" AutoGenerateColumns="False" CanUserAddRows="False" Margin="10">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="跨" Binding="{Binding SpaceName}" Width="*"/>
+                                    <DataGridTemplateColumn Header="左侧支撑" Width="*">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <ComboBox ItemsSource="{Binding BracingTypeList}" DisplayMemberPath="BracingTypeName" SelectedValue="{Binding SelectedBracingTypeL,UpdateSourceTrigger=PropertyChanged}" 
+                                                          SelectedValuePath="BracingTypeName"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn Header="右侧支撑" Width="*">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <ComboBox ItemsSource="{Binding BracingTypeList}" DisplayMemberPath="BracingTypeName" SelectedValue="{Binding SelectedBracingTypeR,UpdateSourceTrigger=PropertyChanged}" 
+                                                          SelectedValuePath="BracingTypeName"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </Border>
+                    <Border Grid.Row="1" BorderThickness="1" BorderBrush="Gray">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="5*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="屋面支撑:"/>
+                            <StackPanel Grid.Row="1">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="截面：" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="RofBracingSelection" Width="300" SelectedIndex="4" Margin="5"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="材料：" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="RofBracingMaterial" Width="300" SelectedIndex="5" Margin="5"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <DataGrid x:Name="RofBracingList" Grid.Row="2" ItemsSource="{Binding RoofBracingInfos}" AutoGenerateColumns="False" CanUserAddRows="False" Margin="10">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="跨" Binding="{Binding SpaceName}" Width="*"/>
+                                    <DataGridTemplateColumn Header="左侧支撑" Width="*">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <ComboBox ItemsSource="{Binding BracingTypeList}" DisplayMemberPath="BracingTypeName" SelectedValue="{Binding SelectedBracingTypeL,UpdateSourceTrigger=PropertyChanged}" 
+                                                          SelectedValuePath="BracingTypeName"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn Header="右侧支撑" Width="*">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <ComboBox ItemsSource="{Binding BracingTypeList}" DisplayMemberPath="BracingTypeName" SelectedValue="{Binding SelectedBracingTypeR,UpdateSourceTrigger=PropertyChanged}" 
+                                                          SelectedValuePath="BracingTypeName"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </Border>
+                    <Image Grid.Column="1" Grid.RowSpan="2" Source="resources/支撑参数图片说明.png"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Button Grid.Row="1" Width="1160" Height="50"  x:Name="submit"  Content="一键生成模型" FontSize="14" Click="submit_Click"/>
+    </Grid>
+</Window>

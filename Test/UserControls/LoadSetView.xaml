@@ -1,0 +1,123 @@
+﻿<UserControl x:Class="Test.UserControls.LoadSetView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Test.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Border  BorderThickness="2" BorderBrush="Gray" Margin="2" CornerRadius="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="恒/活荷载" VerticalAlignment="Center" Foreground="Black"  Style="{DynamicResource TextBlockLargeBold}" HorizontalAlignment="Left" FontSize="18" Margin="10"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="屋面恒荷载：" VerticalAlignment="Center" Foreground="Black" FontSize="16" HorizontalAlignment="Left" Margin="10 0 0 0"/>
+                <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                    <TextBox x:Name="roofDead" Width="200" Height="30" HorizontalAlignment="Left" FontSize="16"/>
+                    <TextBlock Text="kN/m2" VerticalAlignment="Center" FontSize="16" Margin="5 0 0 0" Foreground="Black"/>
+                </StackPanel>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="墙面恒荷载：" VerticalAlignment="Center" Foreground="Black" FontSize="16" HorizontalAlignment="Left" Margin="10 0 0 0"/>
+                <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+                    <TextBox x:Name="wallDead" Width="200" Height="30" HorizontalAlignment="Left" FontSize="16"/>
+                    <TextBlock Text="kN/m2" VerticalAlignment="Center" FontSize="16" Margin="5 0 0 0" Foreground="Black"/>
+                </StackPanel>
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="屋面活荷载：" VerticalAlignment="Center" Foreground="Black" FontSize="16" HorizontalAlignment="Left" Margin="10 0 0 0"/>
+                <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+                    <TextBox x:Name="roofLive" Width="200" Height="30" HorizontalAlignment="Left" FontSize="16"/>
+                    <TextBlock Text="kN/m2" VerticalAlignment="Center" FontSize="16" Margin="5 0 0 0" Foreground="Black"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Border Grid.Row="1" BorderThickness="2" BorderBrush="Gray" Margin="2" CornerRadius="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>                               
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="风荷载设置" VerticalAlignment="Center" Foreground="Black"  Style="{DynamicResource TextBlockLargeBold}" HorizontalAlignment="Left" FontSize="18" Margin="10"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="地面粗糙度：" VerticalAlignment="Center" Foreground="Black" FontSize="16" HorizontalAlignment="Left" Margin="10 0 0 0"/>
+                <ComboBox Grid.Row="1" Grid.Column="1"  x:Name="GroundRoughness" Width="200" Height="30" FontSize="16" HorizontalAlignment="Left"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="封闭形式：" VerticalAlignment="Center" Foreground="Black" FontSize="16" HorizontalAlignment="Left" Margin="10 0 0 0"/>
+                <ComboBox Grid.Row="2" Grid.Column="1" x:Name="ClosedForm" Width="200" Height="30" FontSize="16" HorizontalAlignment="Left"/>
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="基本风压：" VerticalAlignment="Center" Foreground="Black" FontSize="16" HorizontalAlignment="Left" Margin="10 0 0 0"/>
+                <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+                    <TextBox  x:Name="BasicWindPressure" Width="200" Height="30" HorizontalAlignment="Left" FontSize="16"/>
+                    <TextBlock Text="kN/m2" VerticalAlignment="Center" FontSize="16" Margin="5 0 0 0" Foreground="Black"/>
+                </StackPanel>
+                <TextBlock Grid.Row="5" Grid.Column="0" Text="调整系数："  VerticalAlignment="Center" Foreground="Black" FontSize="16" HorizontalAlignment="Left" Margin="10 0 0 0"/>
+                <TextBox Grid.Row="5" Grid.Column="1" x:Name="AdjustFactor" Width="200" Height="30" HorizontalAlignment="Left" FontSize="16"/>
+            </Grid>
+        </Border>
+        <Border Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" BorderThickness="2" BorderBrush="Gray" Margin="2" CornerRadius="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="地震参数设置" VerticalAlignment="Center" Foreground="Black"  Style="{DynamicResource TextBlockLargeBold}" HorizontalAlignment="Left" FontSize="18" Margin="10"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="抗震设防烈度：" VerticalAlignment="Center" Foreground="Black" FontSize="16" HorizontalAlignment="Left" Margin="10 0 0 0"/>
+                <ComboBox Grid.Row="1" Grid.Column="1"  x:Name="SeismicIntensity" Width="200" Height="30" FontSize="14" HorizontalAlignment="Left"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="地震影响系数最大值：" VerticalAlignment="Center" Foreground="Black" FontSize="16" HorizontalAlignment="Left" Margin="10 0 0 0"/>
+                <TextBox Grid.Row="2" Grid.Column="1" x:Name="MaximumValueOfEarthquakeInfluenceCoefficient" Width="200" Height="30" HorizontalAlignment="Left" FontSize="16"/>
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="场地类别：" VerticalAlignment="Center" Foreground="Black" FontSize="16" HorizontalAlignment="Left" Margin="10 0 0 0"/>
+                <ComboBox Grid.Row="3" Grid.Column="1"  x:Name="SiteCategory" Width="200" Height="30" FontSize="16" HorizontalAlignment="Left"/>
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="设计地震分组：" VerticalAlignment="Center" Foreground="Black" FontSize="16" HorizontalAlignment="Left" Margin="10 0 0 0"/>
+                <ComboBox Grid.Row="4" Grid.Column="1"  x:Name="ClassificationOfDesignEarthquake" Width="200" Height="30" FontSize="16" HorizontalAlignment="Left"/>
+                <TextBlock Grid.Row="5" Grid.Column="0" Text="特征周期：" VerticalAlignment="Center" Foreground="Black" FontSize="16" HorizontalAlignment="Left" Margin="10 0 0 0"/>
+                <TextBox Grid.Row="5" Grid.Column="1" x:Name="CharacteristicPeriod" Width="200" Height="30" HorizontalAlignment="Left" FontSize="16"/>
+                <TextBlock Grid.Row="6" Grid.Column="0" Text="周期折减系数：" VerticalAlignment="Center" Foreground="Black" FontSize="16" HorizontalAlignment="Left" Margin="10 0 0 0"/>
+                <TextBox Grid.Row="6" Grid.Column="1" x:Name="PeriodTimeReductionFactor" Width="200" Height="30" HorizontalAlignment="Left" FontSize="16"/>
+                <TextBlock Grid.Row="7" Grid.Column="0" Text="阻尼比：" VerticalAlignment="Center" Foreground="Black" FontSize="16" HorizontalAlignment="Left" Margin="10 0 0 0"/>
+                <TextBox Grid.Row="7" Grid.Column="1" x:Name="DampingRatio" Width="200" Height="30" HorizontalAlignment="Left" FontSize="16"/>
+                <TextBlock Grid.Row="8" Grid.Column="0" Text="振型组合方法：" VerticalAlignment="Center" Foreground="Black" FontSize="16" HorizontalAlignment="Left" Margin="10 0 0 0"/>
+                <ComboBox Grid.Row="8" Grid.Column="1"  x:Name="ModesCombination" Width="200" Height="30" FontSize="16" HorizontalAlignment="Left"/>
+            </Grid>
+        </Border>
+        <Button Grid.Row="2" Grid.ColumnSpan="2" Content="施加荷载" Width="1100" Height="50" FontWeight="Bold" FontSize="20" Click="Button_Click"/>
+    </Grid>
+</UserControl>

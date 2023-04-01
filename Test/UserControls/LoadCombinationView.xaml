@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="Test.UserControls.LoadCombinationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Test.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Row="0"  BorderThickness="2" BorderBrush="Gray" Margin="2" CornerRadius="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="系数设置：" Grid.Row="0" Grid.Column="0" Style="{DynamicResource TextBlockTitleBold}" HorizontalAlignment="Left" Margin="10 0 0 0"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="结构重要性系数：" VerticalAlignment="Center" Foreground="Black" FontSize="16" HorizontalAlignment="Left" Margin="10 0 0 0"/>
+                <TextBox Grid.Row="1" Grid.Column="1" x:Name="StructureImportanceCoefficient" Width="200" Height="30" HorizontalAlignment="Left" FontSize="16"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="恒荷载分项系数：" VerticalAlignment="Center" Foreground="Black" FontSize="16" HorizontalAlignment="Left" Margin="10 0 0 0"/>
+                <TextBox Grid.Row="2" Grid.Column="1" x:Name="DeadLoadPartialCoefficient" Width="200" Height="30" HorizontalAlignment="Left" FontSize="16"/>
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="活荷载分项系数：" VerticalAlignment="Center" Foreground="Black" FontSize="16" HorizontalAlignment="Left" Margin="10 0 0 0"/>
+                <TextBox Grid.Row="3" Grid.Column="1" x:Name="LiveLoadPartialCoefficient" Width="200" Height="30" HorizontalAlignment="Left" FontSize="16"/>
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="活荷载组合系数：" VerticalAlignment="Center" Foreground="Black" FontSize="16" HorizontalAlignment="Left" Margin="10 0 0 0"/>
+                <TextBox Grid.Row="4" Grid.Column="1" x:Name="LiveLoadCombinationCoefficient" Width="200" Height="30" HorizontalAlignment="Left" FontSize="16"/>
+                <TextBlock Grid.Row="5" Grid.Column="0" Text="风荷载分项系数：" VerticalAlignment="Center" Foreground="Black" FontSize="16" HorizontalAlignment="Left" Margin="10 0 0 0"/>
+                <TextBox Grid.Row="5" Grid.Column="1" x:Name="WindLoadPartialCoefficient" Width="200" Height="30" HorizontalAlignment="Left" FontSize="16"/>
+                <TextBlock Grid.Row="6" Grid.Column="0" Text="风荷载组合系数：" VerticalAlignment="Center" Foreground="Black" FontSize="16" HorizontalAlignment="Left" Margin="10 0 0 0"/>
+                <TextBox Grid.Row="6" Grid.Column="1" x:Name="WindLoadCombinationCoefficient" Width="200" Height="30" HorizontalAlignment="Left" FontSize="16"/>
+                <TextBlock Grid.Row="7" Grid.Column="0" Text="重力荷载分项系数：" VerticalAlignment="Center" Foreground="Black" FontSize="16" HorizontalAlignment="Left" Margin="10 0 0 0"/>
+                <TextBox Grid.Row="7" Grid.Column="1" x:Name="GravityPartialCoefficient" Width="200" Height="30" HorizontalAlignment="Left" FontSize="16"/>
+                <TextBlock Grid.Row="8" Grid.Column="0" Text="水平地震作用分项系数：" VerticalAlignment="Center" Foreground="Black" FontSize="16" HorizontalAlignment="Left" Margin="10 0 0 0"/>
+                <TextBox Grid.Row="8" Grid.Column="1" x:Name="HorizentalEarthquakePartialCoefficient" Width="200" Height="30" HorizontalAlignment="Left" FontSize="16"/>
+            </Grid>
+        </Border>
+        <Border Grid.Row="0" Grid.Column="1"  BorderThickness="2" BorderBrush="Gray" Margin="2" CornerRadius="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="7*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="组合结果：" Grid.Row="0" Grid.Column="0" Style="{DynamicResource TextBlockTitleBold}" HorizontalAlignment="Left" Margin="10 0 0 0" />
+                <ListBox Grid.Row="2" Margin="10" x:Name="ResultOfCombination"/>
+            </Grid>
+        </Border>
+        <Button Grid.Row="2" Grid.ColumnSpan="2" Content="生成荷载组合" Width="1100" Height="50" FontWeight="Bold" FontSize="20" Click="Button_Click"/>
+    </Grid>
+</UserControl>

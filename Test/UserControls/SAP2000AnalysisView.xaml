@@ -1,0 +1,91 @@
+﻿<UserControl x:Class="Test.UserControls.SAP2000AnalysisView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Test.UserControls"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock />
+        <StackPanel Margin="10" Orientation="Horizontal">
+            <TextBlock FontSize="20"
+                       Style="{DynamicResource TextBlockDefaultBold}"
+                       Text="选择路径：" />
+            <TextBox x:Name="FoldPath"
+                     Width="500"
+                     FontSize="16" />
+            <Button Width="150"
+                    Height="40"
+                    Margin="10,0,20,0"
+                    HorizontalAlignment="Right"
+                    Click="Button_Click_1"
+                    Content="浏览文件夹"
+                    FontSize="13"
+                    FontWeight="Bold" />
+            <TextBlock FontSize="20"
+                       Style="{DynamicResource TextBlockDefaultBold}"
+                       Text="文件命名：" />
+            <TextBox x:Name="FoldName"
+                     Width="150"
+                     FontSize="16" />
+            <TextBlock VerticalAlignment="Bottom"
+                       FontSize="20"
+                       Foreground="Black"
+                       Text=".sdb" />
+        </StackPanel>
+        <Button Grid.Row="1"
+                Width="1100"
+                Height="40"
+                Click="Button_Click"
+                Content="运行分析"
+                FontSize="20"
+                FontWeight="Bold" />
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <StackPanel>
+                    <ComboBox x:Name="Desc"
+                              Width="200"
+                              Height="40"
+                              Margin="20,10,10,10"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Top"
+                              FontSize="16"
+                              SelectionChanged="Desc_SelectionChanged" />
+                    <ListBox x:Name="Detail"
+                             Height="600"
+                             Margin="20,10,10,10"
+                             ItemsSource="{Binding}"
+                             MouseDoubleClick="ListBoxItem_MouseDoubleClick" />
+                </StackPanel>
+            </Grid>
+            <DataGrid x:Name="Data"
+                      Grid.Column="1"
+                      Margin="10"
+                      ItemsSource="{Binding}"
+                      MouseDoubleClick="Data_MouseDoubleClick" />
+        </Grid>
+    </Grid>
+</UserControl>

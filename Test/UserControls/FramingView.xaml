@@ -1,0 +1,126 @@
+﻿<UserControl x:Class="Test.UserControls.FramingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Test.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="1000">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1.2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Border  Margin="2" BorderBrush="Gray" BorderThickness="2" CornerRadius="5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="2.5*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="刚架梁：" Grid.Row="0" Grid.Column="0" Style="{DynamicResource TextBlockTitleBold}" HorizontalAlignment="Left" Margin="10 0 0 0"/>
+
+                    <TextBlock Text="hr：   "  Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"  Margin="10 0 0 0" FontSize="16" Foreground="Black" />
+                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                        <TextBox x:Name="RfHeight" Grid.Row="1" Grid.Column="1" Width="150"  Height="30" HorizontalAlignment="Left" FontSize="16"/>
+                        <TextBlock Text="mm" VerticalAlignment="Center" FontSize="16" Margin="5 0 0 0" Foreground="Black"/>
+                    </StackPanel>
+                    <TextBlock Text="截面：" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"  Margin="10 0 0 0" FontSize="16" Foreground="Black"  />
+                    <ComboBox  Name="BeamSelection" Grid.Row="2" Grid.Column="1" Width="240" Height="30" SelectedIndex="4"  HorizontalAlignment="Left" FontSize="16"/>
+
+                    <TextBlock Text="材料：" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"  Margin="10 0 0 0" FontSize="16" Foreground="Black" />
+                    <ComboBox Name="BeamMaterial" Grid.Row="3" Grid.Column="1" Width="240" Height="30" SelectedIndex="5" HorizontalAlignment="Left" FontSize="16"/>
+                </Grid>
+            </Border>
+            <Border  Grid.Row="1" Grid.Column="0" Margin="2" BorderBrush="Gray" BorderThickness="2" CornerRadius="5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="2.5*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock  Grid.Row="0" Grid.Column="0" Text="刚架柱：" Style="{DynamicResource TextBlockTitleBold}" HorizontalAlignment="Left" Margin="10 0 0 0"/>
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="hcol：" VerticalAlignment="Center"  Margin="10 0 0 0" FontSize="16" Foreground="Black" />
+                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                        <TextBox x:Name="ColHeight" Width="150" Height="30" HorizontalAlignment="Left" FontSize="16"/>
+                        <TextBlock Text="mm" VerticalAlignment="Center" FontSize="16" Margin="5 0 0 0" Foreground="Black"/>
+                    </StackPanel>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="柱与地连接方式：" VerticalAlignment="Center"  HorizontalAlignment="Left" FontSize="13" Foreground="Black"  />
+                    <ComboBox Grid.Row="2" Grid.Column="1" Name="Connection" Width="240" Height="30" SelectedIndex="0" HorizontalAlignment="Left" FontSize="16"/>
+
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="截面："  VerticalAlignment="Center"  Margin="10 0 0 0" FontSize="16" Foreground="Black" />
+                    <ComboBox Grid.Row="3" Grid.Column="1" Name="ColSelection"  Width="240" Height="30" SelectedIndex="7" HorizontalAlignment="Left" FontSize="16"/>
+
+                    <TextBlock  Grid.Row="4" Grid.Column="0" Text="材料：" VerticalAlignment="Center"  Margin="10 0 0 0" FontSize="16" Foreground="Black" />
+                    <ComboBox Grid.Row="4" Grid.Column="1" Name="ColMaterial"  Width="240" Height="30" SelectedIndex="5" HorizontalAlignment="Left" FontSize="16"/>
+
+                    <CheckBox Grid.Row="5" Grid.ColumnSpan="2" x:Name="IsSetWindResistantCol" Content="边跨抗风柱" FontSize="16" Checked="IsSetWindResistantCol_Checked" Unchecked="IsSetWindResistantCol_Unchecked" Margin="10 5 0 5"/>
+
+                    <TextBlock Grid.Row="6" Grid.Column="0" x:Name="WindResistantColSelectionTip" Text="截面：" VerticalAlignment="Center"  Margin="10 0 0 0" FontSize="16" Foreground="Black" />
+                    <ComboBox  Grid.Row="6" Grid.Column="1" Name="WindResistantColSelection" Width="240" Height="30" SelectedIndex="7" HorizontalAlignment="Left" FontSize="16"/>
+
+                    <TextBlock Grid.Row="7" Grid.Column="0" x:Name="WindResistantColMaterialTip" Text="材料：" VerticalAlignment="Center"  Margin="10 0 0 0" FontSize="16" Foreground="Black" />
+                    <ComboBox  Grid.Row="7" Grid.Column="1" Name="WindResistantColMaterial" Width="240" Height="30" SelectedIndex="5" HorizontalAlignment="Left" FontSize="16"/>
+
+                    <TextBlock Grid.Row="8" Grid.Column="0" x:Name="WindResistantColNumberTip" Text="抗风柱间距：" VerticalAlignment="Center"  Margin="10 0 0 0" FontSize="16" Foreground="Black" />
+                    <StackPanel Grid.Row="8" Grid.Column="1" Orientation="Horizontal">
+                        <TextBox   Name="WindResistantColSpace" Width="150" Height="30" HorizontalAlignment="Left"  FontSize="16"/>
+                        <TextBlock Text="mm" VerticalAlignment="Center" FontSize="16" Margin="5 0 0 0" Foreground="Black"/>
+                        <TextBlock Text="(间距之间用 ; 分开)" FontSize="14" VerticalAlignment="Center" Foreground="Black"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <Border  Grid.Row="2" Margin="2" BorderBrush="Gray" BorderThickness="2" CornerRadius="5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="2.5*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="系杆：" Style="{DynamicResource TextBlockTitleBold}" HorizontalAlignment="Left" Margin="10 0 0 0"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="截面：" VerticalAlignment="Center"  Margin="10 0 0 0" FontSize="16" Foreground="Black" />
+                    <ComboBox Grid.Row="1" Grid.Column="1" Name="XiGanSelection" Width="250" Height="30" SelectedIndex="4" HorizontalAlignment="Left"  FontSize="16"/>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="材料：" VerticalAlignment="Center"  Margin="10 0 0 0" FontSize="16" Foreground="Black" />
+                    <ComboBox Grid.Row="2" Grid.Column="1" Name="XiGanMaterial" Width="250" Height="30" SelectedIndex="5" HorizontalAlignment="Left"  FontSize="16"/>
+                </Grid>
+            </Border>
+        </Grid>
+        <Border Grid.Column="1"  Background="White">
+            <Image  Source="../Images/柱高屋架高图片说明.png" />
+        </Border>
+    </Grid>
+</UserControl>

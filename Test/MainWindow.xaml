@@ -1,0 +1,124 @@
+﻿<hc:Window  
+        x:Class="Test.MainWindow"           
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Test"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Height="850" Width="1300" Foreground="{DynamicResource RegionBrush}" Loaded="Window_Loaded">
+    <!--标题栏设置-->
+    <hc:Window.NonClientAreaContent>
+        <StackPanel Orientation="Horizontal" Height="35">
+            <TextBlock Text="钢结构厂房正向设计平台" Style="{DynamicResource TextBlockBaseStyle}" />
+        </StackPanel>
+    </hc:Window.NonClientAreaContent>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
+                <ResourceDictionary Source="Resources/RadioButtonMenuDictionary.xaml"/>
+                <ResourceDictionary Source="Resources/ExpanderDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        
+    </Window.Resources>
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Border Background="#CCCCCC">
+                <WrapPanel>
+                    <StackPanel>
+                        <Expander Width="160" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#333333" Foreground="White"
+                              Style="{DynamicResource ExpanderStyle}" >
+                            <Expander.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock  Text="&#xf19c;" FontSize="16" FontFamily="Fonts/#FontAwesome" Margin="4 0 10 0" VerticalAlignment="Center"/>
+                                    <TextBlock  Text="三维建模"  FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Fonts/#FontAwesome" FontWeight="Bold"/>
+                                </StackPanel>
+                            </Expander.Header>
+                            <StackPanel>
+                                <RadioButton Content="开间与净深" Tag="&#xf013;"  Width="160" Height="40" GroupName="mainwindow"
+                         HorizontalContentAlignment="Center" FontSize="16" Foreground="White" Background="#5E5E5E"
+                         VerticalContentAlignment="Center" Style="{DynamicResource RadioButtonMenuStyle}" FontWeight="Bold"  Checked="RadioButton_Checked"/>
+                                <RadioButton Content="主刚架" Tag="&#xf013;" Width="160" Height="40"  GroupName="mainwindow"
+                                             HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Background="#5E5E5E"
+                         Style="{DynamicResource RadioButtonMenuStyle}" FontSize="16"  Foreground="White"  FontWeight="Bold" Checked="RadioButton_Checked"/>
+                                <RadioButton Content="支撑" Tag="&#xf013;" Width="160" Height="40"  HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center" Background="#5E5E5E"  GroupName="mainwindow"
+                         Style="{DynamicResource RadioButtonMenuStyle}" FontSize="16"  Foreground="White"  FontWeight="Bold" Checked="RadioButton_Checked"/>
+                                <RadioButton Content="檩条" Tag="&#xf013;" Width="160" Height="40" HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center"  Background="#5E5E5E"  GroupName="mainwindow"
+                         Style="{DynamicResource RadioButtonMenuStyle}" FontSize="16"  Foreground="White"  FontWeight="Bold" Checked="RadioButton_Checked"/>
+                                <RadioButton Content="RVT模型生成" Tag="&#xf013;" Width="160" Height="40" HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center"  Background="#5E5E5E"  GroupName="mainwindow"
+                         Style="{DynamicResource RadioButtonMenuStyle}" FontSize="16"  Foreground="White"  FontWeight="Bold" Checked="RadioButton_Checked"/>
+                            </StackPanel>
+                        </Expander>
+                        <Expander Width="160" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#333333" Foreground="White"
+                              Style="{DynamicResource ExpanderStyle}" >
+                            <Expander.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="&#xf0cb;" FontSize="16" FontFamily="Fonts/#FontAwesome" Margin="4 0 10 0"/>
+                                    <TextBlock Text="计算参数"  FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Fonts/#FontAwesome" FontWeight="Bold"/>
+                                </StackPanel>
+                            </Expander.Header>
+                            <StackPanel>
+                                <RadioButton Content="荷载信息" Tag="&#xf013;"  Width="160" Height="40"  GroupName="mainwindow"
+                         HorizontalContentAlignment="Center" FontSize="16" Foreground="White" Background="#5E5E5E"
+                         VerticalContentAlignment="Center" Style="{DynamicResource RadioButtonMenuStyle}" FontWeight="Bold" Checked="RadioButton_Checked"/>
+                                <RadioButton Content="荷载显示" Tag="&#xf013;"  Width="160" Height="40"  GroupName="mainwindow"
+                         HorizontalContentAlignment="Center" FontSize="16" Foreground="White" Background="#5E5E5E"
+                         VerticalContentAlignment="Center" Style="{DynamicResource RadioButtonMenuStyle}" FontWeight="Bold" Checked="RadioButton_Checked"/>
+                                <RadioButton Content="荷载组合" Tag="&#xf013;" Width="160" Height="40" HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center"  Background="#5E5E5E"  GroupName="mainwindow" 
+                         Style="{DynamicResource RadioButtonMenuStyle}" FontSize="16"  Foreground="White"  FontWeight="Bold" Checked="RadioButton_Checked"/>
+                            </StackPanel>
+                        </Expander>
+                        <Expander Width="160" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#333333" Foreground="White"
+                              Style="{DynamicResource ExpanderStyle}" >
+                            <Expander.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="&#xf0ee;" FontSize="16" FontFamily="Fonts/#FontAwesome" Margin="4 0 10 0"/>
+                                    <TextBlock Text="数据传输"  FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Fonts/#FontAwesome" FontWeight="Bold"/>
+                                </StackPanel>
+                            </Expander.Header>
+                            <StackPanel>
+                                <RadioButton Content="Revit" Tag="&#xf013;"  Width="160" Height="40"  GroupName="mainwindow"
+                         HorizontalContentAlignment="Center" FontSize="16" Foreground="White" Background="#5E5E5E"
+                         VerticalContentAlignment="Center" Style="{DynamicResource RadioButtonMenuStyle}" FontWeight="Bold"  Checked="RadioButton_Checked"/>
+                                <RadioButton Content="SAP2000" Tag="&#xf013;" Width="160" Height="40" HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center"  Background="#5E5E5E"  GroupName="mainwindow"
+                         Style="{DynamicResource RadioButtonMenuStyle}" FontSize="16"  Foreground="White"  FontWeight="Bold"/>
+                            </StackPanel>
+                        </Expander>
+                        <Expander Width="160" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#333333" Foreground="White"
+                              Style="{DynamicResource ExpanderStyle}" >
+                            <Expander.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="&#xf26c;" FontSize="16" FontFamily="Fonts/#FontAwesome" Margin="4 0 10 0"/>
+                                    <TextBlock Text="结构计算"  FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Fonts/#FontAwesome" FontWeight="Bold"/>
+                                </StackPanel>
+                            </Expander.Header>
+                            <StackPanel>
+                                <RadioButton Content="内力分析" Tag="&#xf013;"  Width="160" Height="40"  GroupName="mainwindow"
+                         HorizontalContentAlignment="Center" FontSize="16" Foreground="White" Background="#5E5E5E"
+                         VerticalContentAlignment="Center" Style="{DynamicResource RadioButtonMenuStyle}" FontWeight="Bold" Checked="RadioButton_Checked"/>
+                                <RadioButton Content="内力校核" Tag="&#xf013;" Width="160" Height="40" HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center"  Background="#5E5E5E"  GroupName="mainwindow"
+                         Style="{DynamicResource RadioButtonMenuStyle}" FontSize="16"  Foreground="White"  FontWeight="Bold"/>
+                            </StackPanel>
+                        </Expander>
+                    </StackPanel>
+                </WrapPanel>
+            </Border>
+            <ContentControl Grid.Column="1" x:Name="container"/>
+        </Grid>
+    </Grid>
+</hc:Window>
